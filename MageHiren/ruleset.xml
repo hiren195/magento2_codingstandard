@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<ruleset name="Integer_M2">
+    <description>MageHiren Magento 2 Coding Standard</description>
+
+    <rule ref="PSR1">
+        <severity>7</severity>
+    </rule>
+    <rule ref="PSR2">
+        <severity>7</severity>
+    </rule>
+    <rule ref="Magento2">
+        <!-- do not enforce blank line (or no blank line) after control structure -->
+        <exclude name="Squiz.WhiteSpace.ControlStructureSpacing.LineAfterClose"/>
+        <exclude name="Squiz.WhiteSpace.ControlStructureSpacing.NoLineAfterClose"/>
+        <!-- remove rules that conflict with Allman rule "opening bracket { of function must be on new line" -->
+        <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.CloseBracketLine"/>
+        <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.NewlineBeforeOpenBrace"/>
+
+        <!-- remove core rule of disallowed static functions. We use them for factory methods -->
+        <exclude name="Magento2.Functions.StaticFunction.StaticFunction"/>
+
+        <!-- remove core rule that exceptions must be thrown and catched in the same method -->
+        <exclude name="Magento2.Exceptions.ThrowCatch.ThrowCatch"/>
+
+    </rule>
+
+    <!-- Decrease severity for non-required rules that remain useful as developer notices -->
+    <rule ref="Magento2.Functions.DiscouragedFunction.Discouraged">
+        <severity>5</severity>
+    </rule>
+    <rule ref="Magento2.Security.InsecureFunction.Discouraged">
+        <severity>5</severity>
+    </rule>
+    <rule ref="Magento2.CodeAnalysis.EmptyBlock.DetectedCatch">
+        <severity>5</severity>
+    </rule>
+
+    <!-- On Windows,  the phpcs command gets botched if the ignore pattern contains "^", so we leave it out: -->
+    <exclude-pattern>/src\/app\/etc/</exclude-pattern>
+    <exclude-pattern>/src\/packages/</exclude-pattern>
+
+</ruleset>
